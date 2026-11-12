@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import AOS from 'aos';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import { content } from './content';
@@ -70,5 +72,8 @@ export default function App(){
  </main><footer><div className="container footer-grid"><div><Brand/><p>© {new Date().getFullYear()} Camila Machado · {t.rights}</p><p className="disclaimer">{t.disclaimer}</p></div><div className="footer-social"><p className="eyebrow">{t.networks}</p><SocialLinks compact/></div></div></footer>
  <button className={`icon-button back-top ${scrolled?'is-visible':''}`} inert={!scrolled} aria-hidden={!scrolled} aria-label={t.top} onClick={()=>window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})}><Icon name="up"/></button>
  <div className={`floating-social ${scrolled?'is-visible':''}`} inert={!scrolled} aria-hidden={!scrolled} ref={socialRoot}><div id="social-channels" className={`floating-channels ${social?'is-open':''}`} inert={!social} aria-hidden={!social}><a href={whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="icon-button whatsapp"><Icon name="whatsapp"/></a><a href={instagram} target="_blank" rel="noreferrer" aria-label="Instagram" className="icon-button instagram"><Icon name="instagram"/></a></div><button ref={socialButton} className="icon-button social-toggle" aria-expanded={social} aria-controls="social-channels" aria-label={social?t.close:t.channels} onClick={()=>setSocial(!social)}><Icon name={social?'close':'chat'}/></button></div>
- <ToastContainer position="top-right" theme={theme} limit={3}/></>;
+ <ToastContainer position="top-right" theme={theme} limit={3}/>
+ <Analytics />
+ <SpeedInsights />
+ </>;
 }
